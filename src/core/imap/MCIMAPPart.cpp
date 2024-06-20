@@ -169,6 +169,7 @@ IMAPMessagePart * IMAPPart::attachmentWithIMAPBody1PartMessage(struct mailimap_b
     subAttachment = attachmentWithIMAPBodyInternal(message->bd_body, nextPartID);
     attachment->setMainPart(subAttachment);
     attachment->setMimeType(MCSTR("message/rfc822"));
+    attachment->setContentTypeParameter(MCSTR("size"), String::stringWithUTF8Format("%d", message->bd_fields->bd_size));
 
     return (IMAPMessagePart *) attachment->autorelease();
 }
